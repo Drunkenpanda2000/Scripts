@@ -41,7 +41,7 @@ until (($GetMyANumber -ge 1 -and $GetMyANumber -lt 100) -and $numOK)
 
 # Create storage medium
 
- set-location C:\Users\$env:UserName\VirtualBox VMs\$Name
+ set-location "C:\Users\$env:UserName\VirtualBox VMs\$Name"
  
  VBoxManage createmedium disk --filename $Drivename --size $VDI
 
