@@ -6,6 +6,7 @@ $DriveName = $Name + "Drive"
 $Install_Iso = Read-Host "What is your iso's full path"
 $IDEName = $name + "IDE"
 $SATAName = $Name + "SATA"
+$NicName = "Intel(R) Wireless-N 7260"
 
 write-host $IDEName
 Write-Host $SATAName
@@ -36,7 +37,7 @@ until (($GetMyANumber -ge 1 -and $GetMyANumber -lt 100) -and $numOK)
 # Create and configure vm
 
  VBoxManage createvm --name $Name --register
- VBoxManage modifyvm $Name --nic1 bridged
+ VBoxManage modifyvm $Name --nic1 $NicName
  VBoxManage modifyvm $Name --memory $Memory
 
 # Create storage medium
@@ -53,3 +54,6 @@ until (($GetMyANumber -ge 1 -and $GetMyANumber -lt 100) -and $numOK)
 # Attach storage medium's
  VBoxManage storageattach $Name --storagectl $SATAName --medium "C:\Users\$env:UserName\VirtualBox VMs\$Name\$DriveName.vdi" --port 1 --type HDD
  VBoxManage storageattach $Name --storagectl $IDEName --medium $Install_Iso --port 1 --type dvddrive --device 1
+
+
+ Write-Host "in current state network adaptor needs to be changed to nat and back for it to work (press enter to continiue"
