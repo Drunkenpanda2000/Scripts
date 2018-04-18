@@ -4,6 +4,12 @@
 $Name = Read-Host 'What is your preffered VM Name'
 $DriveName = $Name + "Drive"
 $Install_Iso = Read-Host "What is your iso's full path"
+$IDEName = $name + "IDE"
+$SATAName = $Name + "SATA"
+
+write-host $IDEName
+Write-Host $SATAName
+
 [uint16]$Memory = Read-Host 'What is your preffered Ram in mb for gb * 1024'
 
 # Ask for storage size between 0 - 100 gb
@@ -41,9 +47,9 @@ until (($GetMyANumber -ge 1 -and $GetMyANumber -lt 100) -and $numOK)
 
 # create storage Devices
 
- VBoxManage storagectl $Name --name $Name + "IDE" --add ide
- VBoxManage storagectl $Name  --name $Name + "SATA" --add SATA
+ VBoxManage storagectl $Name --name $IDEName --add ide
+ VBoxManage storagectl $Name  --name $SATAName --add SATA
 
 # Attach storage medium's
- VBoxManage storageattach $Name --storagectl $Name + "SATA" --medium "C:\Users\$env:UserName\VirtualBox VMs\$Name\$DriveName.vdi" --port 1 --type HDD
- VBoxManage storageattach $Name --storagectl $Name + "IDE" --medium $Install_Iso --port 1 --type dvddrive --device 1
+ VBoxManage storageattach $Name --storagectl $SATAName --medium "C:\Users\$env:UserName\VirtualBox VMs\$Name\$DriveName.vdi" --port 1 --type HDD
+ VBoxManage storageattach $Name --storagectl $IDEName --medium $Install_Iso --port 1 --type dvddrive --device 1
