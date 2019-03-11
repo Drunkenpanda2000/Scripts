@@ -1,7 +1,7 @@
 "# scripts" 
 
 
-Ram.PS1 whecks all info on all ram of given computer.
+Ram.PS1 checks all info on all ram of given computer.
 
 
 VboxCreate Creates a VM wil promt the user.
